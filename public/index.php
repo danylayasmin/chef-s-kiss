@@ -8,6 +8,7 @@ require_once '../vendor/autoload.php';
 //connect to database
 R::setup('mysql:host=localhost;dbname=db', 'user', 'password');
 
+// template loader
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader);
 
@@ -18,9 +19,11 @@ session_start();
 if (isset($_GET['controller'])) {
     $params = explode('/', $_GET['controller']);
     $controllerName = ucfirst($params[0]) . 'Controller';
+    // check if controller exists
     if (!class_exists($controllerName)) {
         error(404, 'Controller \'' . ucfirst($params[0]) . 'Controller\' not found', '/');
     }
+    // default controller
 } else {
     $controllerName = "RecipeController";
 }
@@ -36,14 +39,16 @@ if (isset($params[1])) {
         $controller->$method();
         exit;
     }
-
+    // check if method exists
     if (!method_exists($controllerName, $method)) {
         error(404, 'Method \'' . $params[1] . '\' not found', '/');
         exit;
     }
+    // default method
 } else {
     $method = 'index';
 }
 
+// call controller + corresponding method
 $controller = new $controllerName();
 echo $controller->$method();

@@ -9,16 +9,17 @@ $twig = new \Twig\Environment($loader);
 
 displayTemplate('welcome.twig', []);
 
-//controller checken -> default
+//controller checken, params -> default
 if (isset($_GET['controller'])) {
-    $controllerName = $_GET['controller'] . 'Controller';
+    $params = explode('/', $_GET['controller']);
+    $controllerName = ucfirst($params[0]) . 'Controller';
 } else {
     $controllerName = "RecipeController";
 }
 
 // method checken -> default
-if (isset($_GET['method'])) {
-    $method = $_GET['method'];
+if (isset($params[1])) {
+    $method = $params[1];
     if (!method_exists($controllerName, $method)) {
         error(404, 'Method not found');
         exit;

@@ -57,6 +57,11 @@ class RecipeController
             exit;
         }
 
+        if (!isset($this->recipes[$_GET['id'] - 1])) {
+            error(404, 'Recipe not found with ID ' . $_GET['id']);
+            exit;
+        }
+
         foreach ($this->recipes as $recipe) {
             if ($recipe['id'] == $_GET['id']) {
                 $id = $_GET['id'] - 1;
@@ -67,10 +72,6 @@ class RecipeController
                 ];
 
                 displayTemplate('recipes/show.twig', $data);
-                exit;
-            } else {
-                error(404, 'Recipe not found');
-                exit;
             }
         }
     }

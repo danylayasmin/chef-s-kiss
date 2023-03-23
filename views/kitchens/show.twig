@@ -1,0 +1,23 @@
+{% extends "./layouts/app.twig" %}
+{% block title %}
+	Recept
+{% endblock %}
+{% block content %}
+	<table>
+		<tr>
+			<th>
+				<h2>
+					{{kitchen.name}}
+				</h2>
+			</th>
+		</tr>
+		<tr>
+			<th>
+				Description
+			</th>
+			<td>
+				{{kitchen.description}}
+			</td>
+		</tr>
+	</table>
+{% endblock %}

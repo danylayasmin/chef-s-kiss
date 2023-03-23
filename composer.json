@@ -4,7 +4,9 @@
     },
     "autoload": {
         "files": [
-            "helpers.php"
+            "helpers.php",
+            "controllers/RecipeController.php",
+            "controllers/KitchenController.php"
         ]
     }
 }

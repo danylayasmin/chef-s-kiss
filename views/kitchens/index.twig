@@ -1,0 +1,21 @@
+{% extends "./layouts/app.twig" %}
+{% block head %}
+	<style>
+		table {
+			border: 1px solid;
+		};
+	</style>
+{% endblock %}
+{% block title %}
+	Recepten
+{% endblock %}
+{% block content %}
+	{% for kitchen in kitchens %}
+		<table>
+			<tr>
+				<td>
+					{{kitchen.name}}</td>
+			</tr>
+		</table>
+	{% endfor %}
+{% endblock %}

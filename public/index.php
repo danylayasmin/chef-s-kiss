@@ -1,8 +1,9 @@
 <?php
 
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
 require_once '../vendor/autoload.php';
-require_once '../controllers/RecipeController.php';
-require_once '../controllers/KitchenController.php';
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader);

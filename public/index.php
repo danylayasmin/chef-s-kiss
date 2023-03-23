@@ -14,4 +14,12 @@ $data = [
 displayTemplate('welcome.twig', $data);
 
 $controller = new RecipeController();
-$controller->index();
+
+// method checken -> default
+if (isset($_GET['method'])) {
+    $method = $_GET['method'];
+} else {
+    $method = 'index';
+}
+
+echo $controller->$method();

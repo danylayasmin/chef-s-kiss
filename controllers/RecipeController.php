@@ -48,5 +48,10 @@ class RecipeController
         ];
 
         displayTemplate('recipes/index.twig', $data);
+    }    
+   
+    public function show()
+    {
+        echo "Hello from show";
     }
 }

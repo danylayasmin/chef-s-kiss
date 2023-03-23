@@ -14,43 +14,43 @@ R::nuke();
 $recepten = [
     [
         'name' => 'Appeltaart',
-        'kitchen' => 'Nederlandse keuken',
+        'cuisine' => 'Nederlandse keuken',
         'type' => 'Dessert',
         'level' => 'Medium',
     ],
     [
         'name' => 'Gado gado',
-        'kitchen' => 'Indonesische keuken',
+        'cuisine' => 'Indonesische keuken',
         'type' => 'Dinner',
         'level' => 'Medium',
     ],
     [
         'name' => 'Monchoutaart',
-        'kitchen' => 'Franse keuken',
+        'cuisine' => 'Franse keuken',
         'type' => 'Dessert',
         'level' => 'Easy',
     ],
     [
         'name' => 'Pindasaus',
-        'kitchen' => 'Indonesische keuken',
+        'cuisine' => 'Indonesische keuken',
         'type' => 'Side dish',
         'level' => 'Easy',
     ],
     [
         'name' => 'Pastasalade',
-        'kitchen' => 'Nederlandse keuken',
+        'cuisine' => 'Nederlandse keuken',
         'type' => 'Dinner',
         'level' => 'Easy',
     ],
     [
         'name' => 'Bloemkoolschotel',
-        'kitchen' => 'Nederlandse keuken',
+        'cuisine' => 'Nederlandse keuken',
         'type' => 'Dinner',
         'level' => 'Medium',
     ],
 ];
 
-// create kitchens
+// create cuisines
 $keukens = [
     [
         'name' => 'Franse keuken',
@@ -91,14 +91,14 @@ $gebruikers = [
     'password' => password_hash('doe123', PASSWORD_BCRYPT),],
 ];
 
-//insert kitchens
+//insert cuisines
 foreach ($keukens as $keuken) {
-    $kitchen = R::dispense('kitchen');
-    $kitchen->name = $keuken['name'];
-    $kitchen->description = $keuken['description'];
-    R::store($kitchen);
+    $cuisine = R::dispense('cuisine');
+    $cuisine->name = $keuken['name'];
+    $cuisine->description = $keuken['description'];
+    R::store($cuisine);
 }
-print(R::count('kitchen') . " kitchens inserted" . PHP_EOL);
+print(R::count('cuisine') . " cuisines inserted" . PHP_EOL);
 
 //insert recipes
 foreach ($recepten as $recept) {
@@ -107,8 +107,8 @@ foreach ($recepten as $recept) {
     $recipe->type = $recept['type'];
     $recipe->level = $recept['level'];
 
-    $kitchen = R::findOne('kitchen', 'name = ?', [$recept['kitchen']]);
-    $recipe->kitchen = $kitchen;
+    $cuisine = R::findOne('cuisine', 'name = ?', [$recept['cuisine']]);
+    $recipe->cuisine = $cuisine;
     
     R::store($recipe);
 }

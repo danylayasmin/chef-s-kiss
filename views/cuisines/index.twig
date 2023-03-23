@@ -10,11 +10,11 @@
 	Keukens
 {% endblock %}
 {% block content %}
-	{% for kitchen in kitchens %}
+	{% for cuisine in cuisines %}
 		<table>
 			<tr>
 				<td>
-					<a href="kitchen/show?id={{ kitchen.id }}">{{ kitchen.name }}</a>
+					<a href="cuisine/show?id={{ cuisine.id }}">{{ cuisine.name }}</a>
 				</td>
 			</tr>
 		</table>

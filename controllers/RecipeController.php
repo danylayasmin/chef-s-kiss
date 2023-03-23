@@ -35,7 +35,7 @@ class RecipeController extends BaseController
 
         // get data for template
         $data = [
-            'kitchen' => $recipe->kitchen,
+            'cuisine' => $recipe->cuisine,
             'recipe' => $recipe,
             'id' => $_GET['id'],
         ];
@@ -50,7 +50,7 @@ class RecipeController extends BaseController
         
         // get data for template
         $const = array(
-            'kitchens' => R::getCol('SELECT name FROM kitchen'),
+            'cuisines' => R::getCol('SELECT name FROM cuisine'),
             'types' => ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Side dish'],
             'levels' => ['Easy', 'Medium', 'Hard']          
         );
@@ -61,20 +61,20 @@ class RecipeController extends BaseController
     // store new recipe in database
     public function createPost()
     {
-        // find kitchen with name from form
-        $kitchen = R::findOne('kitchen', 'name = ?', [$_POST['kitchen']]);
+        // find cuisine with name from form
+        $cuisine = R::findOne('cuisine', 'name = ?', [$_POST['cuisine']]);
         
         // store data in database
         $recipe = R::dispense('recipe');
         $recipe->name = $_POST['name'];
-        $recipe->kitchen = $kitchen;
+        $recipe->cuisine = $cuisine;
         $recipe->type = $_POST['type'];
         $recipe->level = $_POST['level'];
         R::store($recipe);
 
-        // redirect to kitchen belonging to recipe
-        $id = $recipe->kitchen->id;
-        header("Location: /kitchen/show?id=$id");
+        // redirect to cuisine belonging to recipe
+        $id = $recipe->cuisine->id;
+        header("Location: /cuisine/show?id=$id");
     }
 
     // edit recipe with specific id
@@ -100,8 +100,8 @@ class RecipeController extends BaseController
         $data = [
             'recipe' => $recipe,
             'id' => $_GET['id'],
-            'kitchen' => $recipe->kitchen,
-            'kitchens' => R::getCol('SELECT name FROM kitchen'),
+            'cuisine' => $recipe->cuisine,
+            'cuisines' => R::getCol('SELECT name FROM cuisine'),
             'types' => ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Side dish'],
             'levels' => ['Easy', 'Medium', 'Hard']
         ];
@@ -117,9 +117,9 @@ class RecipeController extends BaseController
         $recipe->type = $_POST['type'];
         $recipe->level = $_POST['level'];
         
-        // find kitchen with name from form and set it to recipe
-        $kitchen = R::findOne('kitchen', 'name = ?', [$_POST['kitchen']]);
-        $recipe->kitchen = $kitchen;
+        // find cuisine with name from form and set it to recipe
+        $cuisine = R::findOne('cuisine', 'name = ?', [$_POST['cuisine']]);
+        $recipe->cuisine = $cuisine;
         R::store($recipe);
 
         // redirect to edited recipe

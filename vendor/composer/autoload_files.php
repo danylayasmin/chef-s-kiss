@@ -11,6 +11,6 @@ return array(
     '2dcc1fe700145c8f64875eb0ae323e56' => $baseDir . '/helpers.php',
     '6af0efc6fde393e57db57e95e9151f72' => $baseDir . '/controllers/BaseController.php',
     'cbeb1640bbf1da1ff46aa0673e29cf71' => $baseDir . '/controllers/RecipeController.php',
-    '38f9f511e01fac23e541a4e0233f52c6' => $baseDir . '/controllers/KitchenController.php',
+    '93a023d97ccca2ea8be6c6c61ac2019c' => $baseDir . '/controllers/CuisineController.php',
     'f143c32355f939df3cf07c3c2b3e5928' => $baseDir . '/controllers/UserController.php',
 );

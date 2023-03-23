@@ -4,18 +4,18 @@
 {% endblock %}
 {% block content %}
 	<form method="post" action="edit">
-        <input type="hidden" name="id" value="{{ kitchen.id }}">
+        <input type="hidden" name="id" value="{{ cuisine.id }}">
 		<table>
 			<tr>
 				<td>Name</td>
 				<td>
-					<input type="text" name="name" value="{{ kitchen.name }}" required/>
+					<input type="text" name="name" value="{{ cuisine.name }}" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>Description</td>
 				<td>
-					<textarea name="description" rows="4" cols="40" required>{{ kitchen.description }}</textarea>
+					<textarea name="description" rows="4" cols="40" required>{{ cuisine.description }}</textarea>
 				</td>
 			</tr>
 		</table>

@@ -381,6 +381,7 @@ class Facade
 	 */
 	public static function transaction( $callback )
 	{
+		if ( !self::$allowFluidTransactions && !self::$redbean->isFrozen() ) return FALSE;
 		return Transaction::transaction( self::$adapter, $callback );
 	}
 
@@ -2055,11 +2056,11 @@ class Facade
 	 * );
 	 * </code>
 	 *
-	 * @param OODBBean[]  $beans       a list of OODBBeans
+	 * @param OODBBean[]|TypedModel[]  $beans       a list of OODBBeans
 	 * @param string      $type        a type string
 	 * @param string      $sqlTemplate an SQL template string for the SELECT-query
 	 *
-	 * @return OODBBean[]
+	 * @return OODBBean[]|TypedModel[]
 	 */
 	public static function loadJoined( $beans, $type, $sqlTemplate = 'SELECT %s.* FROM %s WHERE id IN (%s)' )
 	{

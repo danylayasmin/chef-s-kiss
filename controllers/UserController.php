@@ -7,7 +7,7 @@ class UserController extends BaseController
     public function login()
     {
         if (isset($_SESSION['loggedInUser'])) {
-            error(303, 'You are already logged in', 'http://localhost/');
+            error(303, 'You are already logged in', '/');
             exit;
         }
 
@@ -18,26 +18,26 @@ class UserController extends BaseController
     {
         $user = R::findOne('user', 'username = ?', [$_POST['username']]);
         if (!isset($user)) {
-            error(401, 'User not found with username ' . $_POST['username'], 'http://localhost/user/login');
+            error(401, 'User not found with username ' . $_POST['username'], '/user/login');
         }
         if (!password_verify($_POST['password'], $user->password)) {
-            error(401, 'Username and password do not match', 'http://localhost/user/login');
+            error(401, 'Username and password do not match', '/user/login');
         }
         $_SESSION['loggedInUser'] = $user['id'];
-        header("Location: http://localhost/");
+        header("Location: /");
     }
 
     public function logout()
     {
         session_destroy();
-        header("Location: http://localhost/");
+        header("Location: /");
         die();
     }
 
     public function register()
     {
         if (isset($_SESSION['loggedInUser'])) {
-            error(303, 'You are already logged in', 'http://localhost/');
+            error(303, 'You are already logged in', '/');
             exit;
         }
 
@@ -47,12 +47,12 @@ class UserController extends BaseController
     public function registerPost() 
     {
         if ($_POST["password"] !== $_POST["confirmPassword"]) {
-            error(401, 'Passwords do not match', 'http://localhost/user/register');
+            error(401, 'Passwords do not match', '/user/register');
             die();
         }
         $user = R::findOne('user', 'username = ?', [$_POST['username']]);
         if (!is_null($user)) {
-            error(401, 'Username already taken', 'http://localhost/user/register');
+            error(401, 'Username already taken', '/user/register');
             die();
         }
         $user = R::dispense('user');
@@ -60,6 +60,6 @@ class UserController extends BaseController
         $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         R::store($user);
         $_SESSION['loggedInUser'] = $user['id'];
-        header("Location: http://localhost/");
+        header("Location: /");
     }
 }

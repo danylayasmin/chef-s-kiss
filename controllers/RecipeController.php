@@ -17,12 +17,12 @@ class RecipeController extends BaseController
     public function show()
     {
         if (!isset($_GET['id'])) {
-            error(404, 'No ID provided', 'http://localhost/recipe/show');
+            error(404, 'No ID provided', '/recipe/show');
             exit;
         }
         $recipe = $this->getBeanById('recipe', $_GET['id']);
         if (!isset($recipe)) {
-            error(404, 'Recipe not found with ID ' . $_GET['id'], 'http://localhost/recipe/show');
+            error(404, 'Recipe not found with ID ' . $_GET['id'], '/recipe/show');
             exit;
         }
 
@@ -60,7 +60,7 @@ class RecipeController extends BaseController
 
         // redirect to kitchen belonging to recipe
         $id = $recipe->kitchen->id;
-        header("Location: http://localhost/kitchen/show?id=$id");
+        header("Location: /kitchen/show?id=$id");
     }
 
     public function edit()
@@ -68,12 +68,12 @@ class RecipeController extends BaseController
         $this->authorizeUser();
         
         if (!isset($_GET['id'])) {
-            error(404, 'No ID provided', 'http://localhost/recipe/show');
+            error(404, 'No ID provided', '/recipe/show');
             exit;
         }
         $recipe = $this->getBeanById('recipe', $_GET['id']);
         if (!isset($recipe)) {
-            error(404, 'Recipe not found with ID ' . $_GET['id'], 'http://localhost/recipe/show');
+            error(404, 'Recipe not found with ID ' . $_GET['id'], '/recipe/show');
             exit;
         }
         $data = [
@@ -100,6 +100,6 @@ class RecipeController extends BaseController
 
         // redirect to edited recipe
         $id = $_POST['id'];
-        header("Location: http://localhost/recipe/show?id=$id");
+        header("Location: /recipe/show?id=$id");
     }
 }

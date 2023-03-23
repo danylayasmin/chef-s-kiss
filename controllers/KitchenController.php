@@ -18,12 +18,12 @@ class KitchenController extends BaseController
     public function show()
     {
         if (!isset($_GET['id'])) {
-            error(404, 'No ID provided', 'http://localhost/kitchen/show');
+            error(404, 'No ID provided', '/kitchen/show');
             exit;
         }
         $kitchen = $this->getBeanById('kitchen', $_GET['id']);
         if (!isset($kitchen)) {
-            error(404, 'Kitchen not found with ID ' . $_GET['id'], 'http://localhost/kitchen/show');
+            error(404, 'Kitchen not found with ID ' . $_GET['id'], '/kitchen/show');
             exit;
         }
 
@@ -58,7 +58,7 @@ class KitchenController extends BaseController
 
         // redirect to new kitchen
         $id = $kitchen->id;
-        header("Location: http://localhost/kitchen/show?id=$id");
+        header("Location: /kitchen/show?id=$id");
     }
 
     public function edit()
@@ -66,12 +66,12 @@ class KitchenController extends BaseController
         $this->authorizeUser();
         
         if (!isset($_GET['id'])) {
-            error(404, 'No ID provided', 'http://localhost/kitchen/show');
+            error(404, 'No ID provided', '/kitchen/show');
             exit;
         }
         $kitchen = $this->getBeanById('kitchen', $_GET['id']);
         if (!isset($kitchen)) {
-            error(404, 'Kitchen not found with ID ' . $_GET['id'], 'http://localhost/kitchen/show');
+            error(404, 'Kitchen not found with ID ' . $_GET['id'], '/kitchen/show');
             exit;
         }
         $data = [
@@ -90,6 +90,6 @@ class KitchenController extends BaseController
 
         // redirect to edited kitchen
         $id = $_POST['id'];
-        header("Location: http://localhost/kitchen/show?id=$id");
+        header("Location: /kitchen/show?id=$id");
     }
 }

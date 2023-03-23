@@ -13,7 +13,7 @@ class BaseController
     public function authorizeUser()
     {
         if (!isset($_SESSION['loggedInUser'])) {
-            header('Location: http://localhost/user/login');
+            header('Location: /user/login');
             die();
         }
     }

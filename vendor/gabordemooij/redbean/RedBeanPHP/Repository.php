@@ -52,6 +52,11 @@ abstract class Repository
 	protected $partialBeans = FALSE;
 
 	/**
+	 * @var OODB
+	 */
+	public $oodb = NULL;
+
+	/**
 	 * Toggles 'partial bean mode'. If this mode has been
 	 * selected the repository will only update the fields of a bean that
 	 * have been changed rather than the entire bean.
@@ -651,10 +656,6 @@ abstract class Repository
 	public function count( $type, $addSQL = '', $bindings = array() )
 	{
 		$type = AQueryWriter::camelsSnake( $type );
-		if ( count( explode( '_', $type ) ) > 2 ) {
-			throw new RedException( 'Invalid type for count.' );
-		}
-
 		try {
 			$count = (int) $this->writer->queryRecordCount( $type, array(), $addSQL, $bindings );
 		} catch ( SQLException $exception ) {
@@ -701,8 +702,6 @@ abstract class Repository
 	/**
 	 * Checks whether the specified table already exists in the database.
 	 * Not part of the Object Database interface!
-	 *
-	 * @deprecated Use AQueryWriter::typeExists() instead.
 	 *
 	 * @param string $table table name
 	 *

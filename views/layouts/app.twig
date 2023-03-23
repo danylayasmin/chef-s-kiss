@@ -18,10 +18,10 @@
 			{% block navbar %}
 			{% if loggedInUser %}
 			    <p>Welcome, {{ username }}</p>
-				<a href="http://localhost/user/logout"><input type="submit" value="Log out"></a>
+				<a href="/user/logout"><input type="submit" value="Log out"></a>
 			{% else %}
-				<a href="http://localhost/user/login"><input type="submit" value="Log in"></a>
-				<a href="http://localhost/user/register"><input type="submit" value="Register"></a>
+				<a href="/user/login"><input type="submit" value="Log in"></a>
+				<a href="/user/register"><input type="submit" value="Register"></a>
 			{% endif %}
 			{% endblock %}
 		</div>

@@ -45,6 +45,11 @@ class SQLiteT extends AQueryWriter implements QueryWriter
 	/**
 	 * @var array
 	 */
+	protected $tableArchive = array();
+
+	/**
+	 * @var array
+	 */
 	protected $DDLTemplates = array(
 		'addColumn' => array(
 			'*' => 'ALTER TABLE `%s` ADD `%s` %s'
@@ -297,8 +302,6 @@ class SQLiteT extends AQueryWriter implements QueryWriter
 	 */
 	public function scanType( $value, $flagSpecial = FALSE )
 	{
-		$this->svalue = $value;
-
 		if ( $value === NULL ) return self::C_DATATYPE_INTEGER;
 		if ( $value === INF ) return self::C_DATATYPE_TEXT;
 

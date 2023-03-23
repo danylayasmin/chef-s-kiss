@@ -44,7 +44,7 @@ class RecipeController
     public function index()
     {
         $data = [
-            'recipes' => $this->recipes,
+        'recipes' => $this->recipes,
         ];
 
         displayTemplate('recipes/index.twig', $data);
@@ -52,13 +52,26 @@ class RecipeController
    
     public function show()
     {
-        $id = $_GET['id'];
-        $recipe = $this->recipes[$id];
+        if (!isset($_GET['id'])) {
+            error(404, 'No ID provided');
+            exit;
+        }
 
-        $data = [
-            'recipe' => $recipe,
-        ];
+        foreach ($this->recipes as $recipe) {
+            if ($recipe['id'] == $_GET['id']) {
+                $id = $_GET['id'] - 1;
+                $recipe = $this->recipes[$id];
 
-        displayTemplate('recipes/show.twig', $data);
+                $data = [
+                    'recipe' => $recipe,
+                ];
+
+                displayTemplate('recipes/show.twig', $data);
+                exit;
+            } else {
+                error(404, 'Recipe not found');
+                exit;
+            }
+        }
     }
 }

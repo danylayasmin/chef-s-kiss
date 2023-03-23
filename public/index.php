@@ -13,6 +13,10 @@ $controller = new RecipeController();
 // method checken -> default
 if (isset($_GET['method'])) {
     $method = $_GET['method'];
+    if (!method_exists($controller, $method)) {
+        error(404, 'Method not found');
+        exit;
+    }
 } else {
     $method = 'index';
 }

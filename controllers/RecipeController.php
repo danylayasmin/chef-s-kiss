@@ -1,12 +1,14 @@
 <?php
 
+use RedBeanPHP\R as R;
+
 class RecipeController
 {
     public function index()
     {
-        $recipe = R::getAll('SELECT * FROM recipes');
+        $recipes = R::getAll('SELECT * FROM recipes');
         $data = [
-            'recipes' => $recipe,
+            'recipes' => $recipes,
         ];
 
         displayTemplate('recipes/index.twig', $data);
@@ -18,21 +20,15 @@ class RecipeController
             error(404, 'No ID provided');
             exit;
         }
-        
-        foreach ($this->recipes as $recipe) {
-            if ($recipe['id'] == $_GET['id']) {
-                $data = [
-                    'recipe' => $recipe,
-                ];
-
-                displayTemplate('recipes/show.twig', $data);
-                exit;
-            }
-        }
-        
-        if (!isset($this->recipes[$_GET['id'] - 1])) {
+        $recipe = R::findOne('recipes', 'id = ?', [ $_GET['id'] ]);
+        if (!isset($recipe)) {
             error(404, 'Recipe not found with ID ' . $_GET['id']);
             exit;
         }
+        $data = [
+            'recipe' => $recipe,
+            'id' => $_GET['id'],
+        ];
+        displayTemplate('recipes/show.twig', $data);
     }
 }

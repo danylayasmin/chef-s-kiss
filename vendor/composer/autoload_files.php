@@ -9,6 +9,7 @@ return array(
     '320cde22f66dd4f5d3fd621d3e88b98f' => $vendorDir . '/symfony/polyfill-ctype/bootstrap.php',
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
     '2dcc1fe700145c8f64875eb0ae323e56' => $baseDir . '/helpers.php',
+    '6af0efc6fde393e57db57e95e9151f72' => $baseDir . '/controllers/BaseController.php',
     'cbeb1640bbf1da1ff46aa0673e29cf71' => $baseDir . '/controllers/RecipeController.php',
     '38f9f511e01fac23e541a4e0233f52c6' => $baseDir . '/controllers/KitchenController.php',
 );

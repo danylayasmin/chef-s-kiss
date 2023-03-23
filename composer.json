@@ -6,6 +6,7 @@
     "autoload": {
         "files": [
             "helpers.php",
+            "controllers/BaseController.php",
             "controllers/RecipeController.php",
             "controllers/KitchenController.php"
         ]

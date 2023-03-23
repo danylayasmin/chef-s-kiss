@@ -2,7 +2,7 @@
 
 use RedBeanPHP\R as R;
 
-class RecipeController
+class RecipeController extends BaseController
 {
     public function index()
     {
@@ -20,7 +20,7 @@ class RecipeController
             error(404, 'No ID provided');
             exit;
         }
-        $recipe = R::findOne('recipes', 'id = ?', [ $_GET['id'] ]);
+        $recipe = $this->getBeanById('recipes', $_GET['id']);
         if (!isset($recipe)) {
             error(404, 'Recipe not found with ID ' . $_GET['id']);
             exit;

@@ -9,7 +9,11 @@
 </head>
 
 <body>
-<p>Hier is wat tekst</p>
+<p>Mijn naam is {{name}}.</p>
+<ul>
+    {% for fruit in fruits %}
+    <li>{{fruit}}</li>
+    {% endfor %}
 </body>
 
 </html>

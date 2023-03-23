@@ -4,4 +4,16 @@ require_once '../vendor/autoload.php';
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader);
-echo $twig->render('welcome.twig');
+
+$data = [
+    'name' => 'Da',
+    'fruits' => ['appel', 'peulvrucht'],
+];
+
+function displayTemplate($template, $data)
+{
+    global $twig;
+    echo $twig->render($template, $data);
+}
+
+displayTemplate('welcome.twig', $data);

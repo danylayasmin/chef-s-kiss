@@ -2,49 +2,11 @@
 
 class RecipeController
 {
-    protected $recipes = [
-        [
-            'id' => 1,
-            'name' => 'Appeltaart',
-            'type' => 'Dessert',
-            'level' => 'Medium',
-        ],
-        [
-            'id' => 5,
-            'name' => 'Gado gado',
-            'type' => 'Diner',
-            'level' => 'Medium',
-        ],
-        [
-            'id' => 6,
-            'name' => 'Monchoutaart',
-            'type' => 'Dessert',
-            'level' => 'Easy',
-        ],
-        [
-            'id' => 24,
-            'name' => 'Pindasaus',
-            'type' => 'Bijgerecht',
-            'level' => 'Easy',
-        ],
-        [
-            'id' => 36,
-            'name' => 'Pastasalade',
-            'type' => 'Diner',
-            'level' => 'Easy',
-        ],
-        [
-            'id' => 47,
-            'name' => 'Bloemkoolschotel',
-            'type' => 'Diner',
-            'level' => 'Medium',
-        ],
-    ];
-
     public function index()
     {
+        $recipe = R::getAll('SELECT * FROM recipes');
         $data = [
-        'recipes' => $this->recipes,
+            'recipes' => $recipe,
         ];
 
         displayTemplate('recipes/index.twig', $data);

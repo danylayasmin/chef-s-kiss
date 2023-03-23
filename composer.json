@@ -1,6 +1,7 @@
 {
     "require": {
-        "twig/twig": "^3.4"
+        "twig/twig": "^3.4",
+        "gabordemooij/redbean": "^5.7"
     },
     "autoload": {
         "files": [

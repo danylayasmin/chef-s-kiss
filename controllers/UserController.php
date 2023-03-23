@@ -33,4 +33,33 @@ class UserController extends BaseController
         header("Location: http://localhost/");
         die();
     }
+
+    public function register()
+    {
+        if (isset($_SESSION['loggedInUser'])) {
+            error(303, 'You are already logged in', 'http://localhost/');
+            exit;
+        }
+
+        displayTemplate('users/register.twig', []);
+    }
+
+    public function registerPost() 
+    {
+        if ($_POST["password"] !== $_POST["confirmPassword"]) {
+            error(401, 'Passwords do not match', 'http://localhost/user/register');
+            die();
+        }
+        $user = R::findOne('user', 'username = ?', [$_POST['username']]);
+        if (!is_null($user)) {
+            error(401, 'Username already taken', 'http://localhost/user/register');
+            die();
+        }
+        $user = R::dispense('user');
+        $user->username = $_POST['username'];
+        $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        R::store($user);
+        $_SESSION['loggedInUser'] = $user['id'];
+        header("Location: http://localhost/");
+    }
 }

@@ -1,0 +1,44 @@
+{% extends "./layouts/app.twig" %}
+{% block title %}
+	Register
+{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block content %}
+<form method="post" action="register">
+<h1>Create your account</h1>
+<table>
+    <tr>
+        <th>
+            <h2>
+                Username
+            </h2>
+        </th>
+        <td>
+            <input type="text" name="username" placeholder="Your username" required >
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <h2>
+                Password
+            </h2>
+        </th>
+        <td>
+            <input type="password" name="password" placeholder="Your password" required >
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <h2>
+                Confirm password
+            </h2>
+        </th>
+        <td>
+            <input type="password" name="confirmPassword" placeholder="Confirm your password" required >
+        </td>
+    </tr>
+	</table>
+    <input type="submit" value="Register">
+</form>
+{% endblock %}

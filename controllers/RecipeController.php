@@ -6,7 +6,7 @@ class RecipeController extends BaseController
 {
     public function index()
     {
-        $recipes = R::getAll('SELECT * FROM recipes');
+        $recipes = R::getAll('SELECT * FROM recipe');
         $data = [
             'recipes' => $recipes,
         ];
@@ -20,12 +20,14 @@ class RecipeController extends BaseController
             error(404, 'No ID provided');
             exit;
         }
-        $recipe = $this->getBeanById('recipes', $_GET['id']);
+        $recipe = $this->getBeanById('recipe', $_GET['id']);
         if (!isset($recipe)) {
             error(404, 'Recipe not found with ID ' . $_GET['id']);
             exit;
         }
+
         $data = [
+            'kitchen' => $recipe->kitchen,
             'recipe' => $recipe,
             'id' => $_GET['id'],
         ];
@@ -35,6 +37,7 @@ class RecipeController extends BaseController
     public function create()
     {
         $const = array(
+            'kitchens' => R::getCol('SELECT name FROM kitchen'),
             'types' => ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Side dish'],
             'levels' => ['Easy', 'Medium', 'Hard']          
         );
@@ -44,16 +47,18 @@ class RecipeController extends BaseController
 
     public function createPost()
     {
+        $kitchen = R::findOne('kitchen', 'name = ?', [$_POST['kitchen']]);
         // store data in database
-        $recipe = R::dispense('recipes');
+        $recipe = R::dispense('recipe');
         $recipe->name = $_POST['name'];
+        $recipe->kitchen = $kitchen;
         $recipe->type = $_POST['type'];
         $recipe->level = $_POST['level'];
         R::store($recipe);
 
-        // redirect to new recipe
-        $id = $recipe->id;
-        header("Location: http://localhost/recipe/show?id=$id");
+        // redirect to kitchen belonging to recipe
+        $id = $recipe->kitchen->id;
+        header("Location: http://localhost/kitchen/show?id=$id");
     }
 
     public function edit()
@@ -62,7 +67,7 @@ class RecipeController extends BaseController
             error(404, 'No ID provided');
             exit;
         }
-        $recipe = $this->getBeanById('recipes', $_GET['id']);
+        $recipe = $this->getBeanById('recipe', $_GET['id']);
         if (!isset($recipe)) {
             error(404, 'Recipe not found with ID ' . $_GET['id']);
             exit;
@@ -70,6 +75,8 @@ class RecipeController extends BaseController
         $data = [
             'recipe' => $recipe,
             'id' => $_GET['id'],
+            'kitchen' => $recipe->kitchen,
+            'kitchens' => R::getCol('SELECT name FROM kitchen'),
             'types' => ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Side dish'],
             'levels' => ['Easy', 'Medium', 'Hard']
         ];
@@ -78,10 +85,13 @@ class RecipeController extends BaseController
 
     public function editPost()
     {
-        $recipe = R::load('recipes', $_POST['id']);
+        $recipe = R::load('recipe', $_POST['id']);
         $recipe->name = $_POST['name'];
         $recipe->type = $_POST['type'];
         $recipe->level = $_POST['level'];
+        
+        $kitchen = R::findOne('kitchen', 'name = ?', [$_POST['kitchen']]);
+        $recipe->kitchen = $kitchen;
         R::store($recipe);
 
         // redirect to edited recipe

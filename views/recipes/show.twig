@@ -4,28 +4,49 @@
 {% endblock %}
 {% block content %}
 	<table>
-		<tr>
-			<th>
-				<h2>
-					{{recipe.name}}
-				</h2>
-			</th>
-		</tr>
-		<tr>
-			<th>
-				Type
-			</th>
-			<td>
-				{{recipe.type}}
-			</td>
-		</tr>
-		<tr>
-			<th>
-				Level
-			</th>
-			<td>
-				{{recipe.level}}
-			</td>
-		</tr>
+		<thead>
+			<tr>
+				<th>
+					<h2>
+						{{recipe.name}}
+					</h2>
+				</th>
+				<td>
+					<a href="edit?id={{ kitchen.id }}">
+						<button type="button">
+							Edit
+						</button>
+					</a>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>
+					Kitchen
+				</th>
+				<td>
+					<a href="/kitchen/show?id={{kitchen.id}}">
+						{{kitchen.name}}
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Type
+				</th>
+				<td>
+					{{recipe.type}}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Level
+				</th>
+				<td>
+					{{recipe.level}}
+				</td>
+			</tr>
+		</tbody>
 	</table>
 {% endblock %}

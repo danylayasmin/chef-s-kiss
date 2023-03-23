@@ -13,13 +13,22 @@
 				</td>
 			</tr>
 			<tr>
+			<td>Kitchen</td>
+			<td>
+				<select name="kitchen">
+					<option value="" selected disabled hidden>{{ kitchen.name }}</option>
+					{% for kitchen in kitchens %}
+						<option value="{{ kitchen }}">{{ kitchen }}</option>
+					{% endfor %}
+				</select>
+			<tr>
 				<td>Type</td>
 				<td>
 					<select name="type" required>
-                        <option value="" selected disabled hidden>{{ recipe.type }}</option>
-					{% for type in types %}
-						<option value={{ type }}>{{ type }}</option>
-					{% endfor %}
+                    	<option value="" selected disabled hidden>{{ recipe.type }}</option>
+						{% for type in types %}
+							<option value={{ type }}>{{ type }}</option>
+						{% endfor %}
 				</td>
 			</tr>
 			<tr>
@@ -27,9 +36,9 @@
 				<td>
 					<select name="level" required>
                         <option value="" selected disabled hidden>{{ recipe.level }}</option>
-					{% for level in levels %}
-						<option value={{ level }}>{{ level }}</option>
-					{% endfor %}
+						{% for level in levels %}
+							<option value={{ level }}>{{ level }}</option>
+						{% endfor %}
 				</td>
 			</tr>
 		</table>

@@ -8,38 +8,43 @@ use RedBeanPHP\R as R;
 R::setup('mysql:host=localhost;dbname=yff', 'bit_academy', 'bit_academy');
 
 //empty tables
-R::wipe('recipes');
-R::wipe('kitchens');
+R::nuke();
 
 //create recipes
 $recepten = [
     [
         'name' => 'Appeltaart',
+        'kitchen' => 'Nederlandse keuken',
         'type' => 'Dessert',
         'level' => 'Medium',
     ],
     [
         'name' => 'Gado gado',
+        'kitchen' => 'Indonesische keuken',
         'type' => 'Dinner',
         'level' => 'Medium',
     ],
     [
         'name' => 'Monchoutaart',
+        'kitchen' => 'Franse keuken',
         'type' => 'Dessert',
         'level' => 'Easy',
     ],
     [
         'name' => 'Pindasaus',
+        'kitchen' => 'Indonesische keuken',
         'type' => 'Side dish',
         'level' => 'Easy',
     ],
     [
         'name' => 'Pastasalade',
+        'kitchen' => 'Nederlandse keuken',
         'type' => 'Dinner',
         'level' => 'Easy',
     ],
     [
         'name' => 'Bloemkoolschotel',
+        'kitchen' => 'Nederlandse keuken',
         'type' => 'Dinner',
         'level' => 'Medium',
     ],
@@ -54,13 +59,13 @@ $keukens = [
             keuken en Indische keuken.',
     ],
     [
-        'name' => 'Chineese keuken',
-        'description' => 'De Chinese keuken is de culinaire traditie van China en de Chinesen die in de diaspora 
+        'name' => 'Chinese keuken',
+        'description' => 'De Chinese keuken is de culinaire traditie van China en de Chinezen die in de diaspora 
             leven, hoofdzakelijk in Zuid-Oost-Azië. Door de grootte van China en de aanwezigheid van vele volkeren met 
             eigen culturen, door klimatologische afhankelijkheden en regionale voedselbronnen zijn de variaties groot.',
     ],
     [
-        'name' => 'Hollandse keuken',
+        'name' => 'Nederlandse keuken',
         'description' => 'De Nederlandse keuken is met name geïnspireerd door het landbouwverleden van Nederland.
              Alhoewel de keuken per streek kan verschillen en er regionale specialiteiten bestaan, zijn er voor 
              Nederland typisch geachte gerechten. Nederlandse gerechten zijn vaak relatief eenvoudig en voedzaam, 
@@ -69,27 +74,36 @@ $keukens = [
     [
         'name' => 'Mediterrane keuken',
         'description' => 'De mediterrane keuken is de keuken van het Middellandse Zeegebied en bestaat onder 
-            andere uit de tientallen verschillende keukens uit Marokko,Tunesie, Spanje, Italië, Albanië en Griekenland 
+            andere uit de tientallen verschillende keukens uit Marokko, Tunesië, Spanje, Italië, Albanië, Griekenland 
             en een deel van het zuiden van Frankrijk (zoals de Provençaalse keuken en de keuken van Roussillon).',
+    ],
+    [
+        'name' => 'Indonesische keuken',
+        'description' => 'De Indonesische keuken is de authentieke keuken van Indonesië. Deze keuken is zeer
+            divers, omdat de honderden eilanden van de archipel op culinair gebied verschillen.  Veel
+            eilanden kennen hun eigen recepten, die met specifieke kruiden worden bereid.',
     ],
 ];
 
+//insert kitchens
+foreach ($keukens as $keuken) {
+    $kitchen = R::dispense('kitchen');
+    $kitchen->name = $keuken['name'];
+    $kitchen->description = $keuken['description'];
+    R::store($kitchen);
+}
+print(R::count('kitchen') . " kitchens inserted" . PHP_EOL);
 
 //insert recipes
 foreach ($recepten as $recept) {
-    $recipes = R::dispense('recipes');
-    $recipes->name = $recept['name'];
-    $recipes->type = $recept['type'];
-    $recipes->level = $recept['level'];
-    R::store($recipes);
-}
-print(R::count('recipes') . " recipes inserted" . PHP_EOL);
+    $recipe = R::dispense('recipe');
+    $recipe->name = $recept['name'];
+    $recipe->type = $recept['type'];
+    $recipe->level = $recept['level'];
 
-//insert kitchens
-foreach ($keukens as $keuken) {
-    $kitchens = R::dispense('kitchens');
-    $kitchens->name = $keuken['name'];
-    $kitchens->description = $keuken['description'];
-    R::store($kitchens);
+    $kitchen = R::findOne('kitchen', 'name = ?', [$recept['kitchen']]);
+    $recipe->kitchen = $kitchen;
+    
+    R::store($recipe);
 }
-print(R::count('kitchens') . " kitchens inserted");
+print(R::count('recipe') . " recipes inserted" . PHP_EOL);

@@ -6,7 +6,7 @@ class KitchenController extends BaseController
 {
     public function index()
     {
-        $kitchens = R::getAll('SELECT * FROM kitchens');
+        $kitchens = R::getAll('SELECT * FROM kitchen');
 
         $data = [
         'kitchens' => $kitchens,
@@ -21,18 +21,24 @@ class KitchenController extends BaseController
             error(404, 'No ID provided');
             exit;
         }
-        $kitchen = $this->getBeanById('kitchens', $_GET['id']);
+        $kitchen = $this->getBeanById('kitchen', $_GET['id']);
         if (!isset($kitchen)) {
             error(404, 'Kitchen not found with ID ' . $_GET['id']);
             exit;
         }
 
-            $data = [
-                'kitchen' => $kitchen,
-                'id' => $_GET['id'],
-            ];
+        $recipes = [];
+        foreach ($kitchen->ownRecipeList as $recipe) {
+            $recipes[] = $recipe;
+        }
+ 
+        $data = [
+            'kitchen' => $kitchen,
+            'recipes' => $recipes,
+            'id' => $_GET['id'],
+        ];
 
-            displayTemplate('kitchens/show.twig', $data);
+        displayTemplate('kitchens/show.twig', $data);
     }
 
     public function create()
@@ -43,7 +49,7 @@ class KitchenController extends BaseController
     public function createPost()
     {
         // store data in database
-        $kitchen = R::dispense('kitchens');
+        $kitchen = R::dispense('kitchen');
         $kitchen->name = $_POST['name'];
         $kitchen->description = $_POST['description'];
         R::store($kitchen);
@@ -59,7 +65,7 @@ class KitchenController extends BaseController
             error(404, 'No ID provided');
             exit;
         }
-        $kitchen = $this->getBeanById('kitchens', $_GET['id']);
+        $kitchen = $this->getBeanById('kitchen', $_GET['id']);
         if (!isset($kitchen)) {
             error(404, 'Kitchen not found with ID ' . $_GET['id']);
             exit;
@@ -73,7 +79,7 @@ class KitchenController extends BaseController
 
     public function editPost()
     {
-        $kitchen = R::load('kitchens', $_POST['id']);
+        $kitchen = R::load('kitchen', $_POST['id']);
         $kitchen->name = $_POST['name'];
         $kitchen->description = $_POST['description'];
         R::store($kitchen);

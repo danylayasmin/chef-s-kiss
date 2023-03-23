@@ -4,20 +4,57 @@
 {% endblock %}
 {% block content %}
 	<table>
-		<tr>
-			<th>
-				<h2>
-					{{kitchen.name}}
-				</h2>
-			</th>
-		</tr>
-		<tr>
-			<th>
-				Description
-			</th>
-			<td>
-				{{kitchen.description}}
-			</td>
-		</tr>
+		<thead>
+			<tr>
+				<th>
+					<h2>
+						{{kitchen.name}}
+					</h2>
+				</th>
+				<td>
+					<a href="edit?id={{ kitchen.id }}">
+						<button type="button">
+							Edit
+						</button>
+					</a>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>
+					Description
+				</th>
+				<td>
+					{{kitchen.description}}
+				</td>
+			</tr>
+		</tbody>
 	</table>
+
+	<h2>
+		Recipes
+	</h2>
+	{% if recipes is not empty %}
+		{% for recipe in recipes %}
+			<details>
+				<summary>	
+					{{recipe.name}}
+				</summary>
+				<h4>
+					{{recipe.level}}
+				</h4>	
+				<p>
+					{{recipe.type}}
+				</p>
+				<a href="/recipe/show?id={{recipe.id}}">
+					Show
+				</a>			
+			</details>
+		{% endfor %}
+	{% else %}
+		<p>
+			No recipes yet
+		</p>
+	{% endif %}
 {% endblock %}

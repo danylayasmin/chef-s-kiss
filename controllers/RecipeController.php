@@ -36,6 +36,8 @@ class RecipeController extends BaseController
 
     public function create()
     {
+        $this->authorizeUser();
+        
         $const = array(
             'kitchens' => R::getCol('SELECT name FROM kitchen'),
             'types' => ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Side dish'],
@@ -63,6 +65,8 @@ class RecipeController extends BaseController
 
     public function edit()
     {
+        $this->authorizeUser();
+        
         if (!isset($_GET['id'])) {
             error(404, 'No ID provided', 'http://localhost/recipe/show');
             exit;

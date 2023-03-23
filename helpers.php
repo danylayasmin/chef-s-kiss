@@ -6,8 +6,9 @@ function displayTemplate($template, $data = [])
 {
     global $twig;
     $data['session'] = $_SESSION;
-    $user = R::getAll('SELECT username FROM user WHERE id = ?', [$_SESSION['loggedInUser']]);
-    $data['username'] =  ($user[0]['username']);
+    $data['loggedInUser'] = $_SESSION['loggedInUser'] ?? null;
+    $user = R::getAll('SELECT username FROM user WHERE id = ?', [$data['loggedInUser']]) ?? null;
+    $data['username'] =  ($user[0]['username']) ?? null;
     echo $twig->render($template, $data);
 }
 

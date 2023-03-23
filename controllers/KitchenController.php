@@ -43,6 +43,8 @@ class KitchenController extends BaseController
 
     public function create()
     {
+        $this->authorizeUser();
+
         displayTemplate('kitchens/create.twig', []);
     }
 
@@ -61,6 +63,8 @@ class KitchenController extends BaseController
 
     public function edit()
     {
+        $this->authorizeUser();
+        
         if (!isset($_GET['id'])) {
             error(404, 'No ID provided', 'http://localhost/kitchen/show');
             exit;

@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twig</title>
-</head>
-
-<body>
-<p>Mijn naam is {{name}}.</p>
-<ul>
-    {% for fruit in fruits %}
-    <li>{{fruit}}</li>
-    {% endfor %}
-</body>
-
-</html>
+{% extends "./layouts/app.twig" %}
+{% block title %}
+    Welcome
+{% endblock %}
+{% block content %}
+    <p>Mijn naam is {{name}}.</p>
+    <ul>
+        {% for fruit in fruits %}
+        <li>{{fruit}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

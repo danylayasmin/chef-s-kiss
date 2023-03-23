@@ -1,6 +1,7 @@
 <?php
 
 require_once '../vendor/autoload.php';
+require_once '../controllers/RecipeController.php';
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader);
@@ -11,3 +12,6 @@ $data = [
 ];
 
 displayTemplate('welcome.twig', $data);
+
+$controller = new RecipeController();
+$controller->index();

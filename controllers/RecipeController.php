@@ -52,6 +52,13 @@ class RecipeController
    
     public function show()
     {
-        echo "Hello from show";
+        $id = $_GET['id'];
+        $recipe = $this->recipes[$id];
+
+        $data = [
+            'recipe' => $recipe,
+        ];
+
+        displayTemplate('recipes/show.twig', $data);
     }
 }

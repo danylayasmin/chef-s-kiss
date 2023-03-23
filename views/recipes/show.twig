@@ -1,0 +1,19 @@
+{% extends "./layouts/app.twig" %}
+{% block title %}
+    Recept
+{% endblock %}
+{% block content %}
+        <table>
+        <tr>
+            <th><h2> {{recipe.name}} </h2></th>
+        </tr>
+        <tr>
+            <th> Type </th>
+            <td> {{recipe.type}} </td>
+        </tr>
+        <tr>
+            <th> Level </th>
+            <td> {{recipe.level}} </td>
+        </tr>
+        </table> 
+{% endblock %}

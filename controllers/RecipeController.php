@@ -55,4 +55,37 @@ class RecipeController extends BaseController
         $id = $recipe->id;
         header("Location: http://localhost/recipe/show?id=$id");
     }
+
+    public function edit()
+    {
+        if (!isset($_GET['id'])) {
+            error(404, 'No ID provided');
+            exit;
+        }
+        $recipe = $this->getBeanById('recipes', $_GET['id']);
+        if (!isset($recipe)) {
+            error(404, 'Recipe not found with ID ' . $_GET['id']);
+            exit;
+        }
+        $data = [
+            'recipe' => $recipe,
+            'id' => $_GET['id'],
+            'types' => ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Side dish'],
+            'levels' => ['Easy', 'Medium', 'Hard']
+        ];
+        displayTemplate('recipes/edit.twig', $data);
+    }
+
+    public function editPost()
+    {
+        $recipe = R::load('recipes', $_POST['id']);
+        $recipe->name = $_POST['name'];
+        $recipe->type = $_POST['type'];
+        $recipe->level = $_POST['level'];
+        R::store($recipe);
+
+        // redirect to edited recipe
+        $id = $_POST['id'];
+        header("Location: http://localhost/recipe/show?id=$id");
+    }
 }

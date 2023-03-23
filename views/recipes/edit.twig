@@ -1,20 +1,22 @@
 {% extends "./layouts/app.twig" %}
 {% block title %}
-	Recept aanmaken
+	Recept bewerken
 {% endblock %}
 {% block content %}
-	<form method="post" action="create">
+	<form method="post" action="edit">
+        <input type="hidden" name="id" value="{{ recipe.id }}">
 		<table>
 			<tr>
 				<td>Name</td>
 				<td>
-					<input type="text" name="name" required/>
+					<input type="text" name="name" value="{{ recipe.name }}" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>Type</td>
 				<td>
-					<select name="type">
+					<select name="type" required>
+                        <option value="" selected disabled hidden>{{ recipe.type }}</option>
 					{% for type in types %}
 						<option value={{ type }}>{{ type }}</option>
 					{% endfor %}
@@ -23,13 +25,14 @@
 			<tr>
 				<td>Level</td>
 				<td>
-					<select name="level">
+					<select name="level" required>
+                        <option value="" selected disabled hidden>{{ recipe.level }}</option>
 					{% for level in levels %}
 						<option value={{ level }}>{{ level }}</option>
 					{% endfor %}
 				</td>
 			</tr>
 		</table>
-		<input type="submit" value="Create"/>
+		<input type="submit" value="Edit"/>
 	</form>
 {% endblock %}

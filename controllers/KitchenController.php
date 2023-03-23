@@ -23,7 +23,7 @@ class KitchenController extends BaseController
         }
         $kitchen = $this->getBeanById('kitchens', $_GET['id']);
         if (!isset($kitchen)) {
-            error(404, 'kitchen not found with ID ' . $_GET['id']);
+            error(404, 'Kitchen not found with ID ' . $_GET['id']);
             exit;
         }
 
@@ -50,6 +50,36 @@ class KitchenController extends BaseController
 
         // redirect to new kitchen
         $id = $kitchen->id;
+        header("Location: http://localhost/kitchen/show?id=$id");
+    }
+
+    public function edit()
+    {
+        if (!isset($_GET['id'])) {
+            error(404, 'No ID provided');
+            exit;
+        }
+        $kitchen = $this->getBeanById('kitchens', $_GET['id']);
+        if (!isset($kitchen)) {
+            error(404, 'Kitchen not found with ID ' . $_GET['id']);
+            exit;
+        }
+        $data = [
+            'kitchen' => $kitchen,
+            'id' => $_GET['id']
+        ];
+        displayTemplate('kitchens/edit.twig', $data);
+    }
+
+    public function editPost()
+    {
+        $kitchen = R::load('kitchens', $_POST['id']);
+        $kitchen->name = $_POST['name'];
+        $kitchen->description = $_POST['description'];
+        R::store($kitchen);
+
+        // redirect to edited kitchen
+        $id = $_POST['id'];
         header("Location: http://localhost/kitchen/show?id=$id");
     }
 }

@@ -1,0 +1,36 @@
+{% extends "./layouts/app.twig" %}
+{% block title %}
+	Recept aanmaken
+{% endblock %}
+{% block content %}
+	<form method="post" action="createRecipe">
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Type</td>
+				<td>
+					<select name="type">
+					{% for type in types %}
+						<option value={{ type }}>{{ type }}</option>
+					{% endfor %}
+				</td>
+				</tr>
+			</tr>
+			<tr>
+				<td>Level</td>
+				<td>
+					<select name="level">
+					{% for level in levels %}
+						<option value={{ level }}>{{ level }}</option>
+					{% endfor %}
+				</td>
+			</tr>
+		</table>
+		<input type="submit" value="Create"/>
+	</form>
+{% endblock %}

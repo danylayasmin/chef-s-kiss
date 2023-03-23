@@ -20,7 +20,7 @@ $recepten = [
     ],
     [
         'name' => 'Gado gado',
-        'type' => 'Diner',
+        'type' => 'Dinner',
         'level' => 'Medium',
     ],
     [
@@ -30,17 +30,17 @@ $recepten = [
     ],
     [
         'name' => 'Pindasaus',
-        'type' => 'Bijgerecht',
+        'type' => 'Side dish',
         'level' => 'Easy',
     ],
     [
         'name' => 'Pastasalade',
-        'type' => 'Diner',
+        'type' => 'Dinner',
         'level' => 'Easy',
     ],
     [
         'name' => 'Bloemkoolschotel',
-        'type' => 'Diner',
+        'type' => 'Dinner',
         'level' => 'Medium',
     ],
 ];

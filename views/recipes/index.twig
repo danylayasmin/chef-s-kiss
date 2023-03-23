@@ -1,21 +1,27 @@
 {% extends "./layouts/app.twig" %}
-{% block head %}
-<style>
-    table {
-        border: 1px solid;
-    };
-</style>
+{% block style %}
+	<style>
+		table {
+			border: 1px solid;
+		};
+	</style>
 {% endblock %}
 {% block title %}
-    Recepten
+	Recepten
 {% endblock %}
 {% block content %}
-    {% for recipe in recipes %}
-    <table>
-    <tr>
-        <td> {{recipe.name}} </td>
-        <td> {{recipe.type}} </td>
-        <td> {{recipe.level}} </td>
-    </table>
-    {% endfor %}
+	{% for recipe in recipes %}
+		<table>
+			<tr>
+				<td>
+					{{recipe.name}}
+				</td>
+				<td>
+					{{recipe.type}}
+				</td>
+				<td>
+					{{recipe.level}}</td>
+			</tr>
+		</table>
+	{% endfor %}
 {% endblock %}

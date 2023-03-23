@@ -31,4 +31,28 @@ class RecipeController extends BaseController
         ];
         displayTemplate('recipes/show.twig', $data);
     }
+
+    public function create()
+    {
+        $const = array(
+            'types' => ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Side dish'],
+            'levels' => ['Easy', 'Medium', 'Hard']          
+        );
+        
+        displayTemplate('recipes/create.twig', $const);
+    }
+
+    public function createRecipe()
+    {
+        // store data in database
+        $recipe = R::dispense('recipes');
+        $recipe->name = $_POST['name'];
+        $recipe->type = $_POST['type'];
+        $recipe->level = $_POST['level'];
+        R::store($recipe);
+
+        // redirect to new recipe
+        $id = $recipe->id;
+        header("Location: http://localhost/recipe/show?id=$id");
+    }
 }

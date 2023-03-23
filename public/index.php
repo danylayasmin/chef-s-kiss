@@ -11,8 +11,6 @@ R::setup('mysql:host=localhost;dbname=db', 'user', 'password');
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader);
 
-displayTemplate('welcome.twig', []);
-
 //controller checken, params -> default
 if (isset($_GET['controller'])) {
     $params = explode('/', $_GET['controller']);

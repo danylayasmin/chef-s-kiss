@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        {% block head %}
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}{% endblock %}- Twig</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
-        {% endblock %}
-    </head>
+	<head>
+		{% block head %}
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>
+				{% block title %}{% endblock %}- Twig</title>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+		{% endblock %}
+		{% block style %}{% endblock %}
+	</head>
 
-    <body>
-        <div id="content">
-        {% block content %}
-        {% endblock %}
-        </div>
-        <div id="footer">
-        {% block footer %}
-        {% endblock %}
-        </div>
-    </body>
+	<body>
+		<div id="content"> {% block content %}{% endblock %}
+			</div>
+			<div id="footer"> {% block footer %}{% endblock %}
+				</div>
+			</body>
 
-</html>
+		</html>

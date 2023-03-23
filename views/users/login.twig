@@ -1,0 +1,33 @@
+{% extends "./layouts/app.twig" %}
+{% block title %}
+	Login
+{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block content %}
+<form method="post" action="login">
+<h1>Login to your account</h1>
+<table>
+    <tr>
+        <th>
+            <h2>
+                Username
+            </h2>
+        </th>
+        <td>
+            <input type="text" name="username" placeholder="Your username" required >
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <h2>
+                Password
+            </h2>
+        </th>
+        <td>
+            <input type="password" name="password" placeholder="Your password" required >
+    </tr>
+	</table>
+    <input type="submit" value="Login">
+</form>
+{% endblock %}

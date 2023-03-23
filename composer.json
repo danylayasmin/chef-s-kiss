@@ -8,7 +8,8 @@
             "helpers.php",
             "controllers/BaseController.php",
             "controllers/RecipeController.php",
-            "controllers/KitchenController.php"
+            "controllers/KitchenController.php",
+            "controllers/UserController.php"
         ]
     }
 }

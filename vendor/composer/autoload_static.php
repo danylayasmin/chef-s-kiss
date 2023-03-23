@@ -13,6 +13,7 @@ class ComposerStaticInita43d47bbb6cc04b834745f4b18f0de0b
         '6af0efc6fde393e57db57e95e9151f72' => __DIR__ . '/../..' . '/controllers/BaseController.php',
         'cbeb1640bbf1da1ff46aa0673e29cf71' => __DIR__ . '/../..' . '/controllers/RecipeController.php',
         '38f9f511e01fac23e541a4e0233f52c6' => __DIR__ . '/../..' . '/controllers/KitchenController.php',
+        'f143c32355f939df3cf07c3c2b3e5928' => __DIR__ . '/../..' . '/controllers/UserController.php',
     );
 
     public static $prefixLengthsPsr4 = array (

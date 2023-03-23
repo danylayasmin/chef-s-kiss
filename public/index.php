@@ -11,12 +11,15 @@ R::setup('mysql:host=localhost;dbname=db', 'user', 'password');
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader);
 
+// start session
+session_start();
+
 // check controller, params -> default
 if (isset($_GET['controller'])) {
     $params = explode('/', $_GET['controller']);
     $controllerName = ucfirst($params[0]) . 'Controller';
     if (!class_exists($controllerName)) {
-        error(404, 'Controller \'' . ucfirst($params[0]) . 'Controller\' not found');
+        error(404, 'Controller \'' . ucfirst($params[0]) . 'Controller\' not found', 'http://localhost/');
     }
 } else {
     $controllerName = "RecipeController";
@@ -35,7 +38,7 @@ if (isset($params[1])) {
     }
 
     if (!method_exists($controllerName, $method)) {
-        error(404, 'Method \'' . $params[1] . '\' not found');
+        error(404, 'Method \'' . $params[1] . '\' not found', 'http://localhost/');
         exit;
     }
 } else {

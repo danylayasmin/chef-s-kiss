@@ -14,10 +14,22 @@
 	</head>
 
 	<body>
-		<div id="content"> {% block content %}{% endblock %}
-			</div>
-			<div id="footer"> {% block footer %}{% endblock %}
-				</div>
-			</body>
+		<div id="navbar">
+			{% block navbar %}
+			{% if session.loggedInUser %}
+			    <p>Welcome, {{ username }}</p>
+				<a href="http://localhost/user/logout"><input type="submit" value="Log out"></a>
+			{% else %}
+				<a href="http://localhost/user/login"><input type="submit" value="Log in"></a>
+			{% endif %}
+			{% endblock %}
+		</div>
+		<div id="content">
+			{% block content %}{% endblock %}
+		</div>
+		<div id="footer">
+			{% block footer %}{% endblock %}
+		</div>
+	</body>
 
-		</html>
+</html>

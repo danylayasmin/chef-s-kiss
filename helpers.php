@@ -1,15 +1,20 @@
 <?php
 
-function displayTemplate($template, $data)
+use RedBeanPHP\R as R;
+
+function displayTemplate($template, $data = [])
 {
     global $twig;
+    $data['session'] = $_SESSION;
+    $user = R::getAll('SELECT username FROM user WHERE id = ?', [$_SESSION['loggedInUser']]);
+    $data['username'] =  ($user[0]['username']);
     echo $twig->render($template, $data);
 }
 
-function error($errorNumber, $errorMessage)
+function error($errorNumber, $errorMessage, $url)
 {
     $error = 'Error ' . $errorNumber . ': ' . $errorMessage;
     http_response_code($errorNumber);
-    displayTemplate('error.twig', ['errorMessage' => $errorMessage, 'errorNumber' => $errorNumber]);
+    displayTemplate('error.twig', ['errorMessage' => $errorMessage, 'errorNumber' => $errorNumber, 'url' => $url]);
     die();
 }

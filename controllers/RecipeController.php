@@ -17,12 +17,12 @@ class RecipeController extends BaseController
     public function show()
     {
         if (!isset($_GET['id'])) {
-            error(404, 'No ID provided');
+            error(404, 'No ID provided', 'http://localhost/recipe/show');
             exit;
         }
         $recipe = $this->getBeanById('recipe', $_GET['id']);
         if (!isset($recipe)) {
-            error(404, 'Recipe not found with ID ' . $_GET['id']);
+            error(404, 'Recipe not found with ID ' . $_GET['id'], 'http://localhost/recipe/show');
             exit;
         }
 
@@ -64,12 +64,12 @@ class RecipeController extends BaseController
     public function edit()
     {
         if (!isset($_GET['id'])) {
-            error(404, 'No ID provided');
+            error(404, 'No ID provided', 'http://localhost/recipe/show');
             exit;
         }
         $recipe = $this->getBeanById('recipe', $_GET['id']);
         if (!isset($recipe)) {
-            error(404, 'Recipe not found with ID ' . $_GET['id']);
+            error(404, 'Recipe not found with ID ' . $_GET['id'], 'http://localhost/recipe/show');
             exit;
         }
         $data = [

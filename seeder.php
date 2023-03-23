@@ -85,6 +85,12 @@ $keukens = [
     ],
 ];
 
+//create user
+$gebruikers = [
+    ['username' => 'john',
+    'password' => password_hash('doe123', PASSWORD_BCRYPT),],
+];
+
 //insert kitchens
 foreach ($keukens as $keuken) {
     $kitchen = R::dispense('kitchen');
@@ -107,3 +113,12 @@ foreach ($recepten as $recept) {
     R::store($recipe);
 }
 print(R::count('recipe') . " recipes inserted" . PHP_EOL);
+
+//insert user
+foreach ($gebruikers as $gebruiker) {
+    $user = R::dispense('user');
+    $user->username = $gebruiker['username'];
+    $user->password = $gebruiker['password'];
+    R::store($user);
+}
+print(R::count('user') . " users inserted" . PHP_EOL);

@@ -34,4 +34,22 @@ class KitchenController extends BaseController
 
             displayTemplate('kitchens/show.twig', $data);
     }
+
+    public function create()
+    {
+        displayTemplate('kitchens/create.twig', []);
+    }
+
+    public function createPost()
+    {
+        // store data in database
+        $kitchen = R::dispense('kitchens');
+        $kitchen->name = $_POST['name'];
+        $kitchen->description = $_POST['description'];
+        R::store($kitchen);
+
+        // redirect to new kitchen
+        $id = $kitchen->id;
+        header("Location: http://localhost/kitchen/show?id=$id");
+    }
 }

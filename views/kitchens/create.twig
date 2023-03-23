@@ -1,0 +1,23 @@
+{% extends "./layouts/app.twig" %}
+{% block title %}
+	Keuken aanmaken
+{% endblock %}
+{% block content %}
+	<form method="post" action="create">
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>
+					<input type="text" name="name" required/>
+				</td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td>
+					<textarea name="description" rows="4" cols="40" required></textarea>
+				</td>
+			</tr>
+		</table>
+		<input type="submit" value="Create"/>
+	</form>
+{% endblock %}

@@ -42,7 +42,7 @@ class RecipeController extends BaseController
         displayTemplate('recipes/create.twig', $const);
     }
 
-    public function createRecipe()
+    public function createPost()
     {
         // store data in database
         $recipe = R::dispense('recipes');

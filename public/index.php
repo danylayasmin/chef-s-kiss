@@ -11,7 +11,7 @@ R::setup('mysql:host=localhost;dbname=db', 'user', 'password');
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader);
 
-//controller checken, params -> default
+// check controller, params -> default
 if (isset($_GET['controller'])) {
     $params = explode('/', $_GET['controller']);
     $controllerName = ucfirst($params[0]) . 'Controller';
@@ -22,9 +22,18 @@ if (isset($_GET['controller'])) {
     $controllerName = "RecipeController";
 }
 
-// method checken -> default
+// check method -> default
 if (isset($params[1])) {
     $method = $params[1];
+    // check if there is a post request
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $method .= 'Post';
+        // sent to the controller
+        $controller = new $controllerName();
+        $controller->$method();
+        exit;
+    }
+
     if (!method_exists($controllerName, $method)) {
         error(404, 'Method \'' . $params[1] . '\' not found');
         exit;

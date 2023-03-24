@@ -8,23 +8,31 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<title>
 				{% block title %}{% endblock %}- Twig</title>
-			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+			<script src="https://cdn.tailwindcss.com"></script>
+			<script>
+				tailwind.config = {
+				theme: {
+					extend: {
+					colors: {
+						bow: '#f25187',
+						stripe: '#86b6e1',
+					}
+					}
+				}
+				}
+			</script>
 		{% endblock %}
 		{% block style %}{% endblock %}
 	</head>
 
 	<body>
-		<div id="navbar">
+		<nav class="flex-no-wrap flex w-full items-center justify-between bg-stripe">
 			{% block navbar %}
-			{% if loggedInUser %}
-			    <p>Welcome, {{ username }}</p>
-				<a href="/user/logout"><input type="submit" value="Log out"></a>
-			{% else %}
-				<a href="/user/login"><input type="submit" value="Log in"></a>
-				<a href="/user/register"><input type="submit" value="Register"></a>
-			{% endif %}
+			<div class="flex w-full flex-wrap items-center justify-between px-6">
+			<a class="block border-0 bg-transparent py-2 px-2.5 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200" href="/"><img src="/images/name.png" alt="logo" width="15%" height="15%"></a>
+			</div>
 			{% endblock %}
-		</div>
+		</nav>
 		<div id="content">
 			{% block content %}{% endblock %}
 		</div>
@@ -32,5 +40,11 @@
 			{% block footer %}{% endblock %}
 		</div>
 	</body>
-
+{% if loggedInUser %}
+			    <p>Welcome, {{ username }}</p>
+				<a href="/user/logout"><input type="submit" value="Log out"></a>
+			{% else %}
+				<a href="/user/login"><input type="submit" value="Log in"></a>
+				<a href="/user/register"><input type="submit" value="Register"></a>
+			{% endif %}
 </html>

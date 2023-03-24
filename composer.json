@@ -1,7 +1,8 @@
 {
     "require": {
         "twig/twig": "^3.4",
-        "gabordemooij/redbean": "^5.7"
+        "gabordemooij/redbean": "^5.7",
+        "symfony/asset": "^6.2"
     },
     "autoload": {
         "files": [

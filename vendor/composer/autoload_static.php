@@ -25,6 +25,7 @@ class ComposerStaticInita43d47bbb6cc04b834745f4b18f0de0b
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Symfony\\Component\\Asset\\' => 24,
         ),
         'R' => 
         array (
@@ -44,6 +45,10 @@ class ComposerStaticInita43d47bbb6cc04b834745f4b18f0de0b
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
+        'Symfony\\Component\\Asset\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/asset',
         ),
         'RedBeanPHP\\' => 
         array (

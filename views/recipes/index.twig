@@ -35,7 +35,7 @@
 		{% for recipe in recipes %}
 		<tr>
 			<td class="py-2 px-4 border border-gray-300 border-r-0 text-base font-medium text-stripe">
-			{{recipe.name}}
+			<a href="/recipe/show?id={{ recipe.id }}">{{recipe.name}}</a
 			</td>
 			<td class="py-2 px-4 border border-gray-300 border-x-0 text-base font-medium text-gray-700">
 			{{recipe.type}}

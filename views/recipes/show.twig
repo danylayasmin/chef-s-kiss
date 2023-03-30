@@ -3,50 +3,45 @@
 	Recept
 {% endblock %}
 {% block content %}
-	<table>
-		<thead>
+	<div class="mx-auto max-w-4xl">
+	<div class="flex justify-between my-4">
+		<h2 class="text-2xl font-bold">{{recipe.name}}</h2>
+		<div>
+			<a href="/" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-gray-700 rounded hover:bg-bow hover:text-neutral-100">Back</a>
+            <a href="/recipe/edit?id={{ recipe.id }}" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-bow rounded hover:bg-bow hover:text-white mr-2">Edit</a>
+        </div>
+	</div>
+	<table class="border-collapse table-fixed w-full">
+		<tbody class="bg-white divide-y divide-gray-200">
 			<tr>
-				<th>
-					<h2>
-						{{recipe.name}}
-					</h2>
-				</th>
-				<td>
-					<a href="edit?id={{ cuisine.id }}">
-						<button type="button">
-							Edit
-						</button>
-					</a>
-				</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th>
-					Cuisine
-				</th>
-				<td>
+				<th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Cuisine</th>
+				<td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium text-stripe">
 					<a href="/cuisine/show?id={{cuisine.id}}">
 						{{cuisine.name}}
 					</a>
 				</td>
 			</tr>
 			<tr>
-				<th>
-					Type
-				</th>
-				<td>
-					{{recipe.type}}
-				</td>
+				<th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Type</th>
+				<td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium text-gray-700">{{recipe.type}}</td>
 			</tr>
 			<tr>
-				<th>
-					Level
-				</th>
-				<td>
-					{{recipe.level}}
+				<th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Level</th>
+				<td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
+					<span class="inline-block px-2 py-1 text-sm font-semibold rounded-full
+						{% if recipe.level == 'Easy' %}
+							bg-green-300 text-green-800
+						{% elseif recipe.level == 'Medium' %}
+							bg-yellow-300 text-yellow-800
+						{% elseif recipe.level == 'Difficult' %}
+							bg-red-300 text-red-800
+						{% endif %}
+					">
+						{{ recipe.level }}
+					</span>
 				</td>
 			</tr>
 		</tbody>
 	</table>
+</div>
 {% endblock %}

@@ -10,18 +10,55 @@
 	Recepten
 {% endblock %}
 {% block content %}
-	{% for recipe in recipes %}
-		<table>
-			<tr>
-				<td>
-					{{recipe.name}}
-				</td>
-				<td>
-					{{recipe.type}}
-				</td>
-				<td>
-					{{recipe.level}}</td>
-			</tr>
-		</table>
-	{% endfor %}
+<div class="mx-auto max-w-4xl">
+	<div class="flex justify-between my-4">
+		<h2 class="text-2xl font-bold">Recipes</h2>
+		<a href="/recipe/create" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-gray-700 rounded hover:bg-bow hover:text-neutral-100">Create</a>
+	</div>
+	<table class="border-collapse table-fixed w-full">
+		<thead>
+		<tr class="bg-gray-50">
+			<th class="w-44 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">
+			Name
+			</th>
+			<th class="w-20 py-2 px-4 border border-gray-300 border-x-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">
+			Type
+			</th>
+			<th class="w-20 py-2 px-4 border border-gray-300 border-x-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">
+			Level
+			</th>
+			<th class="w-16 py-2 px-4 border border-gray-300 border-l-0 text-right text-base font-medium text-gray-500 uppercase tracking-wider">
+			</th>
+		</tr>
+		</thead>
+		<tbody class="bg-white divide-y divide-gray-200">
+		{% for recipe in recipes %}
+		<tr>
+			<td class="py-2 px-4 border border-gray-300 border-r-0 text-base font-medium text-stripe">
+			{{recipe.name}}
+			</td>
+			<td class="py-2 px-4 border border-gray-300 border-x-0 text-base font-medium text-gray-700">
+			{{recipe.type}}
+			</td>
+			<td class="py-2 px-4 border border-gray-300 border-x-0 text-base font-medium">
+			<span class="inline-block px-2 py-1 text-sm font-semibold rounded-full
+				{% if recipe.level == 'Easy' %}
+					bg-green-300 text-green-800
+				{% elseif recipe.level == 'Medium' %}
+					bg-yellow-300 text-yellow-800
+				{% elseif recipe.level == 'Difficult' %}
+					bg-red-300 text-red-800
+				{% endif %}
+			">
+				{{ recipe.level }}
+			</span>
+			</td>
+			<td class="py-2 px-4 border border-gray-300 border-l-0 text-right">
+			<a href="/recipe/edit?id={{ recipe.id }}" class="px-3 py-1 text-sm font-medium bg-neutral-100 text-bow rounded hover:bg-bow hover:text-white">Edit</a>
+			</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
 {% endblock %}

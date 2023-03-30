@@ -3,45 +3,59 @@
 	Recept bewerken
 {% endblock %}
 {% block content %}
-	<form method="post" action="edit">
-        <input type="hidden" name="id" value="{{ recipe.id }}">
-		<table>
-			<tr>
-				<td>Name</td>
-				<td>
-					<input type="text" name="name" value="{{ recipe.name }}" required/>
-				</td>
-			</tr>
-			<tr>
-			<td>Cuisine</td>
-			<td>
-				<select name="cuisine">
-					<option value="" selected disabled hidden>{{ cuisine.name }}</option>
-					{% for cuisine in cuisines %}
-						<option value="{{ cuisine }}">{{ cuisine }}</option>
-					{% endfor %}
-				</select>
-			<tr>
-				<td>Type</td>
-				<td>
-					<select name="type" required>
+<div class="mx-auto max-w-4xl">
+	<div class="flex justify-between my-4">
+		<h2 class="text-2xl font-bold">Edit Recipe</h2>
+	</div>
+	<form method="post" action="edit" class="table-fixed w-full">
+		<input type="hidden" name="id" value="{{ recipe.id }}">
+		<table class="border-collapse w-full">
+			<tbody class="bg-white divide-y divide-gray-200">
+				<tr>
+					<th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Name</th>
+					<td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
+						<input type="text" name="name" value="{{ recipe.name }}" required class="w-full">
+					</td>
+				</tr>
+				<tr>
+					<th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Cuisine</th>
+					<td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
+						<select name="cuisine" class="w-full">
+							<option value="" selected disabled hidden>{{ cuisine.name }}</option>
+							{% for cuisine in cuisines %}
+								<option value="{{ cuisine }}">{{ cuisine }}</option>
+							{% endfor %}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Type</th>
+					<td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
+						<select name="type" required class="w-full">
                     	<option value="" selected disabled hidden>{{ recipe.type }}</option>
 						{% for type in types %}
 							<option value={{ type }}>{{ type }}</option>
 						{% endfor %}
-				</td>
-			</tr>
-			<tr>
-				<td>Level</td>
-				<td>
-					<select name="level" required>
-                        <option value="" selected disabled hidden>{{ recipe.level }}</option>
-						{% for level in levels %}
-							<option value={{ level }}>{{ level }}</option>
-						{% endfor %}
-				</td>
-			</tr>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Level</th>
+					<td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
+						<select name="level" required class="w-full">
+							 <option value="" selected disabled hidden>{{ recipe.level }}</option>
+							{% for level in levels %}
+								<option value={{ level }}>{{ level }}</option>
+							{% endfor %}
+						</select>
+					</td>
+				</tr>
+			</tbody>
 		</table>
-		<input type="submit" value="Edit"/>
+		<div class="flex justify-end mt-4">
+			<a href="/recipe/show?id={{ recipe.id }}" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-gray-700 rounded hover:bg-bow hover:text-neutral-100 mr-2">Back</a>
+			<input type="submit" value="Edit" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-bow rounded hover:bg-bow hover:text-white"/>
+		</div>
 	</form>
+</div>
 {% endblock %}

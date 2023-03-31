@@ -30,28 +30,28 @@
 		<nav class="bg-stripe shadow">
 			<div class="max-w-7xl mx-auto p-2 sm:px-6 lg:px-8">
 				<div class="flex items-center justify-between h-16">
-				<div class="flex-shrink-0">
-					<a href="/">
-					<img class="h-16" src="/images/name.png" alt="Chef's kiss">
-					</a>
-				</div>
-				<div class="hidden md:block">
-					<div class="ml-10 flex items-baseline space-x-4">
-					<a href="/" class="text-neutral-200 hover:text-bow px-3 py-2 rounded-md text-lg font-medium">Recipes</a>
-					<a href="/cuisine" class="text-neutral-200 hover:text-bow px-3 py-2 rounded-md text-lg font-medium">Cuisines</a>
+					<div class="flex-shrink-0">
+						<a href="/">
+						<img class="h-16" src="/images/name.png" alt="Chef's kiss">
+						</a>
 					</div>
-				</div>
-				<div class="hidden md:block">
-					<div class="ml-4 flex items-center md:ml-6">
-					{% if loggedInUser %}
-					<p class="text-bow px-3 py-2 rounded-md text-md font-medium cursor-default">Welcome, {{ username }}</p>
-					<a href="/user/logout" class="bg-neutral-200 text-gray-700 hover:drop-shadow-xl hover:bg-bow hover:text-neutral-200 px-3 py-2 rounded-md text-md font-medium">Log out</a>
-					{% else %}
-					<a href="/user/login" class="text-neutral-200 hover:text-bow px-3 py-2 rounded-md text-md font-medium">Log in</a>
-					<a href="/user/register" class="bg-neutral-200 text-gray-700 hover:drop-shadow-xl hover:bg-bow hover:text-neutral-200 px-3 py-2 rounded-md text-md font-medium">Register</a>
-					{% endif %}
+					<div class="hidden md:block">
+						<div class="ml-10 flex items-baseline space-x-4">
+						<a href="/" class="text-neutral-200 hover:text-bow px-3 py-2 rounded-md text-lg font-medium">Recipes</a>
+						<a href="/cuisine" class="text-neutral-200 hover:text-bow px-3 py-2 rounded-md text-lg font-medium">Cuisines</a>
+						</div>
 					</div>
-				</div>
+					<div class="hidden md:block">
+						<div class="ml-4 flex items-center md:ml-6">
+						{% if loggedInUser %}
+						<p class="text-bow px-3 py-2 rounded-md text-md font-medium cursor-default">Welcome, {{ username }}</p>
+						<a href="/user/logout" class="bg-neutral-200 text-gray-700 hover:drop-shadow-xl hover:bg-bow hover:text-neutral-200 px-3 py-2 rounded-md text-md font-medium">Log out</a>
+						{% else %}
+						<a href="/user/login" class="text-neutral-200 hover:text-bow px-3 py-2 rounded-md text-md font-medium">Log in</a>
+						<a href="/user/register" class="bg-neutral-200 text-gray-700 hover:drop-shadow-xl hover:bg-bow hover:text-neutral-200 px-3 py-2 rounded-md text-md font-medium">Register</a>
+						{% endif %}
+						</div>
+					</div>
 				</div>
 			</div>
 		</nav>

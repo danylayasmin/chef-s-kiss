@@ -1,60 +1,55 @@
 {% extends "./layouts/app.twig" %}
 {% block title %}
-	Keuken
+	Cuisine
 {% endblock %}
 {% block content %}
-	<table>
-		<thead>
+<div class="mx-auto max-w-4xl">
+	<div class="flex justify-between my-4">
+		<h2 class="text-2xl font-bold">{{cuisine.name}}</h2>
+	</div>
+	<table class="my-4 w-full border-collapse">
+		<tbody class="bg-white divide-y divide-gray-200">
 			<tr>
-				<th>
-					<h2>
-						{{cuisine.name}}
-					</h2>
-				</th>
-				<td>
-					<a href="edit?id={{ cuisine.id }}">
-						<button type="button">
-							Edit
-						</button>
-					</a>
-				</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th>
-					Description
-				</th>
-				<td>
-					{{cuisine.description}}
+				<th class="px-4 py-2 bg-gray-100 border border-gray-200 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Description</th>
+				<td class="px-4 py-2 bg-white border border-gray-200 text-sm font-medium text-gray-700" colspan="2">
+				<div class="overflow-auto max-h-48">{{ cuisine.description }}</div>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-
-	<h2>
-		Recipes
-	</h2>
-	{% if recipes is not empty %}
-		{% for recipe in recipes %}
-			<details>
-				<summary>	
-					{{recipe.name}}
-				</summary>
-				<h4>
-					{{recipe.level}}
-				</h4>	
-				<p>
-					{{recipe.type}}
-				</p>
-				<a href="/recipe/show?id={{recipe.id}}">
-					Show
-				</a>			
+		
+	<h2 class="text-2xl font-bold">Recipes</h2>
+		{% if recipes is not empty %}
+		<div class="divide-y divide-gray-200">
+			{% for recipe in recipes %}
+			<details class="py-2">
+			<summary class="font-medium text-gray-700">{{ recipe.name }}</summary>
+			<div class="pl-4 mt-2">
+				<p class="mb-1 font-medium text-gray-700">Level:</p>
+				<span class="px-2 py-1 text-sm font-semibold rounded-full
+				{% if recipe.level == 'Easy' %}
+				bg-green-300 text-green-800
+				{% elseif recipe.level == 'Medium' %}
+				bg-yellow-300 text-yellow-800
+				{% elseif recipe.level == 'Difficult' %}
+				bg-red-300 text-red-800
+				{% endif %}
+				">
+				{{ recipe.level }}
+				</span>
+				<p class="my-1 font-medium text-gray-700">Type:</p>
+				<p class="mb-2">{{ recipe.type }}</p>
+				<a href="/recipe/show?id={{ recipe.id }}" class="text-bow hover:text-blue-600">Show</a>
+			</div>
 			</details>
-		{% endfor %}
-	{% else %}
-		<p>
-			No recipes yet
-		</p>
-	{% endif %}
+			{% endfor %}
+		</div>
+		{% else %}
+		<p>No recipes yet</p>
+		{% endif %}
+	<div class="flex justify-end mt-4">
+		<a href="/cuisine" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-gray-700 rounded hover:bg-bow hover:text-neutral-100 mr-2">Back</a>
+		<a href="/cuisine/edit?id={{ cuisine.id }}" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-bow rounded hover:bg-bow hover:text-white">Edit</a>
+	</div>
+</div>
 {% endblock %}

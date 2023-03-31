@@ -5,8 +5,16 @@
 {% block navbar %}
 {% endblock %}
 {% block content %}
-    <h1>Error {{ errorNumber }}</h1>
-    <h5>Oops! Something went wrong.</h5>
-    <p>{{ errorMessage }}</p>
-    <a href="{{ url }}">Go back</a>
+<div class="mx-auto max-w-4xl">
+	<div class="flex justify-between my-4">
+		<h2 class="text-2xl font-bold text-stripe">Error {{ errorNumber }}</h2>
+	</div>
+	<div class="py-4 px-6 bg-white shadow-md">
+		<h5 class="text-xl font-medium text-red-500">Oops! Something went wrong.</h5>
+		<p class="mt-4">{{ errorMessage }}</p>
+		<div class="mt-8 flex justify-end">
+			<a href="{{ url }}" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-gray-700 rounded hover:bg-bow hover:text-neutral-100 mr-2">Go back</a>
+		</div>
+	</div>
+</div>
 {% endblock %}

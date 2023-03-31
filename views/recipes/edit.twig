@@ -20,7 +20,7 @@
 				<tr>
 					<th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Cuisine</th>
 					<td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
-						<select name="cuisine" class="w-full">
+						<select name="cuisine" class="w-1/4">
 							<option value="" selected disabled hidden>{{ cuisine.name }}</option>
 							{% for cuisine in cuisines %}
 								<option value="{{ cuisine }}">{{ cuisine }}</option>
@@ -31,7 +31,7 @@
 				<tr>
 					<th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Type</th>
 					<td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
-						<select name="type" required class="w-full">
+						<select name="type" required class="w-1/4">
                     	<option value="" selected disabled hidden>{{ recipe.type }}</option>
 						{% for type in types %}
 							<option value={{ type }}>{{ type }}</option>
@@ -42,7 +42,7 @@
 				<tr>
 					<th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Level</th>
 					<td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
-						<select name="level" required class="w-full">
+						<select name="level" required class="w-1/4">
 							 <option value="" selected disabled hidden>{{ recipe.level }}</option>
 							{% for level in levels %}
 								<option value={{ level }}>{{ level }}</option>

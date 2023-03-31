@@ -6,10 +6,6 @@
 	<div class="mx-auto max-w-4xl">
 	<div class="flex justify-between my-4">
 		<h2 class="text-2xl font-bold">{{recipe.name}}</h2>
-		<div>
-			<a href="/" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-gray-700 rounded hover:bg-bow hover:text-neutral-100">Back</a>
-            <a href="/recipe/edit?id={{ recipe.id }}" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-bow rounded hover:bg-bow hover:text-white">Edit</a>
-        </div>
 	</div>
 	<table class="border-collapse table-fixed w-full">
 		<tbody class="bg-white divide-y divide-gray-200">
@@ -43,5 +39,9 @@
 			</tr>
 		</tbody>
 	</table>
+	<div class="flex justify-end mt-4">
+		<a href="/" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-gray-700 rounded hover:bg-bow hover:text-neutral-100 mr-2">Back</a>
+		<a href="/recipe/edit?id={{ recipe.id }}" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-bow rounded hover:bg-bow hover:text-white">Edit</a>
+	</div>
 </div>
 {% endblock %}

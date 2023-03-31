@@ -1,23 +1,33 @@
 {% extends "./layouts/app.twig" %}
 {% block title %}
-	Keuken aanmaken
+	Create cuisine
 {% endblock %}
 {% block content %}
-	<form method="post" action="create">
-		<table>
-			<tr>
-				<td>Name</td>
-				<td>
-					<input type="text" name="name" required/>
-				</td>
-			</tr>
-			<tr>
-				<td>Description</td>
-				<td>
-					<textarea name="description" rows="4" cols="40" required></textarea>
-				</td>
-			</tr>
-		</table>
-		<input type="submit" value="Create"/>
-	</form>
+<div class="mx-auto max-w-4xl">
+    <div class="flex justify-between my-4">
+        <h2 class="text-2xl font-bold">Create your cuisine</h2>
+    </div>
+    <form method="post" action="create" class="table-fixed w-full">
+        <table class="border-collapse w-full">
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                    <td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
+                        <input type="text" name="name" required class="w-full" placeholder="my cuisine">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                    <td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
+                        <textarea name="description" rows="4" cols="40" required></textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="flex justify-end mt-4">
+            <a href="/cuisine" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-gray-700 rounded hover:bg-bow hover:text-neutral-100 mr-2">Back</a>
+            <input type="submit" value="Create" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-bow rounded hover:bg-bow hover:text-white"/>
+        </div>
+    </form>
+</div>
 {% endblock %}

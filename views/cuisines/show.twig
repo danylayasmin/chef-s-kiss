@@ -25,17 +25,17 @@
 			<details class="py-2">
 			<summary class="font-medium text-gray-700">{{ recipe.name }}</summary>
 			<div class="pl-4 mt-2">
-				<p class="mb-1 font-medium text-gray-700">Level:</p>
+				<p class="mb-1 font-medium text-gray-700">Difficulty:</p>
 				<span class="px-2 py-1 text-sm font-semibold rounded-full
-				{% if recipe.level == 'Easy' %}
+				{% if recipe.difficulty == 'Easy' %}
 				bg-green-300 text-green-800
-				{% elseif recipe.level == 'Medium' %}
+				{% elseif recipe.difficulty == 'Medium' %}
 				bg-yellow-300 text-yellow-800
-				{% elseif recipe.level == 'Difficult' %}
+				{% elseif recipe.difficulty == 'Hard' %}
 				bg-red-300 text-red-800
 				{% endif %}
 				">
-				{{ recipe.level }}
+				{{ recipe.difficulty }}
 				</span>
 				<p class="my-1 font-medium text-gray-700">Type:</p>
 				<p class="mb-2">{{ recipe.type }}</p>

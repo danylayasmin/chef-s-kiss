@@ -16,37 +16,37 @@ $recepten = [
         'name' => 'Appeltaart',
         'cuisine' => 'Nederlandse keuken',
         'type' => 'Dessert',
-        'level' => 'Medium',
+        'difficulty' => 'Medium',
     ],
     [
         'name' => 'Gado gado',
         'cuisine' => 'Indonesische keuken',
         'type' => 'Dinner',
-        'level' => 'Medium',
+        'difficulty' => 'Medium',
     ],
     [
         'name' => 'Monchoutaart',
         'cuisine' => 'Franse keuken',
         'type' => 'Dessert',
-        'level' => 'Easy',
+        'difficulty' => 'Easy',
     ],
     [
         'name' => 'Pindasaus',
         'cuisine' => 'Indonesische keuken',
         'type' => 'Side dish',
-        'level' => 'Easy',
+        'difficulty' => 'Easy',
     ],
     [
         'name' => 'Pastasalade',
         'cuisine' => 'Nederlandse keuken',
         'type' => 'Dinner',
-        'level' => 'Easy',
+        'difficulty' => 'Easy',
     ],
     [
         'name' => 'Bloemkoolschotel',
         'cuisine' => 'Nederlandse keuken',
         'type' => 'Dinner',
-        'level' => 'Medium',
+        'difficulty' => 'Medium',
     ],
 ];
 
@@ -105,7 +105,7 @@ foreach ($recepten as $recept) {
     $recipe = R::dispense('recipe');
     $recipe->name = $recept['name'];
     $recipe->type = $recept['type'];
-    $recipe->level = $recept['level'];
+    $recipe->difficulty = $recept['difficulty'];
 
     $cuisine = R::findOne('cuisine', 'name = ?', [$recept['cuisine']]);
     $recipe->cuisine = $cuisine;

@@ -52,7 +52,7 @@ class RecipeController extends BaseController
         $const = array(
             'cuisines' => R::getCol('SELECT name FROM cuisine'),
             'types' => ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Side dish'],
-            'levels' => ['Easy', 'Medium', 'Hard']          
+            'difficulties' => ['Easy', 'Medium', 'Hard']          
         );
         
         displayTemplate('recipes/create.twig', $const);
@@ -69,7 +69,7 @@ class RecipeController extends BaseController
         $recipe->name = $_POST['name'];
         $recipe->cuisine = $cuisine;
         $recipe->type = $_POST['type'];
-        $recipe->level = $_POST['level'];
+        $recipe->difficulty = $_POST['difficulty'];
         R::store($recipe);
 
         // redirect to cuisine belonging to recipe
@@ -103,7 +103,7 @@ class RecipeController extends BaseController
             'cuisine' => $recipe->cuisine,
             'cuisines' => R::getCol('SELECT name FROM cuisine'),
             'types' => ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Side dish'],
-            'levels' => ['Easy', 'Medium', 'Hard']
+            'difficulties' => ['Easy', 'Medium', 'Hard']
         ];
         displayTemplate('recipes/edit.twig', $data);
     }
@@ -115,7 +115,7 @@ class RecipeController extends BaseController
         $recipe = R::load('recipe', $_POST['id']);
         $recipe->name = $_POST['name'];
         $recipe->type = $_POST['type'];
-        $recipe->level = $_POST['level'];
+        $recipe->difficulty = $_POST['difficulty'];
         
         // find cuisine with name from form and set it to recipe
         $cuisine = R::findOne('cuisine', 'name = ?', [$_POST['cuisine']]);

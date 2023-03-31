@@ -3,29 +3,31 @@
 	Login
 {% endblock %}
 {% block content %}
-<form method="post" action="login">
-<h1>Login to your account</h1>
-<table>
-    <tr>
-        <th>
-            <h2>
-                Username
-            </h2>
-        </th>
-        <td>
-            <input type="text" name="username" placeholder="Your username" required >
-        </td>
-    </tr>
-    <tr>
-        <th>
-            <h2>
-                Password
-            </h2>
-        </th>
-        <td>
-            <input type="password" name="password" placeholder="Your password" required >
-    </tr>
-	</table>
-    <input type="submit" value="Login">
-</form>
+<div class="mx-auto max-w-4xl">
+    <div class="flex justify-between my-4">
+        <h2 class="text-2xl font-bold">Login to your account</h2>
+    </div>
+    <form method="post" action="login" class="table-fixed w-full">
+        <table class="border-collapse w-full">
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Username</th>
+                    <td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
+                        <input type="text" name="username" required class="w-full" placeholder="Your username">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="w-20 py-2 px-4 border border-gray-300 border-r-0 text-left text-base font-medium text-gray-500 uppercase tracking-wider">Password</th>
+                    <td class="py-2 px-4 border border-gray-300 border-l-0 text-base font-medium">
+                        <input type="password" name="password" required class="w-full" placeholder="Your password">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="flex justify-end mt-4">
+            <a href="/" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-gray-700 rounded hover:bg-bow hover:text-neutral-100 mr-2">Back</a>
+            <input type="submit" value="Login" class="px-3 py-1 text-lg font-medium bg-neutral-100 text-bow rounded hover:bg-bow hover:text-white"/>
+        </div>
+    </form>
+</div>
 {% endblock %}

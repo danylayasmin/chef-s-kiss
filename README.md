@@ -1,5 +1,5 @@
 # Chef's Kiss
-Application to store recipes and cuisines, built using my own framework.
+An application to store recipes and cuisines, built using my own framework.
 
 ![Swedish Chef](https://i.kym-cdn.com/entries/icons/original/000/021/267/swedish_chef.jpg)
 
